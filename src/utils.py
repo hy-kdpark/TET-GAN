@@ -91,8 +91,8 @@ def load_trainset_batchfnames(filepath, batch_size, usetrainnum=708, trainnum=10
 # prepare batched filename of the style image for one shot learning
 def load_oneshot_batchfnames(filename, batch_size, trainnum=100000):
     trainnum = (trainnum / batch_size / 2) * batch_size * 2
-    trainbatches = [([]) for _ in range(trainnum/batch_size/2)]
-    for i in range(trainnum/batch_size/2):
+    trainbatches = [([]) for _ in range(int(trainnum/batch_size/2))]
+    for i in range(int(trainnum/batch_size/2)):
         traindatas = []
         for j in range(batch_size):
             traindatas += [[filename,filename]]  
@@ -159,10 +159,11 @@ def prepare_batch(batchfnames, level=3, jitter=0.0, centercropratio=0.5, augemen
         
         # create data at different levels
         for i in range(layernum):
-            img1_in_ = transform(img1_in.resize((img_wds[i], img_hts[i]),Image.LANCZOS))
-            img2_in_ = transform(img2_in.resize((img_wds[i], img_hts[i]),Image.LANCZOS))
-            img1_out_ = transform(img1_out.resize((img_wds[i], img_hts[i]),Image.LANCZOS))
-            img2_out_ = transform(img2_out.resize((img_wds[i], img_hts[i]),Image.LANCZOS))
+            print(int(img_wds[i]), int(img_hts[i]))
+            img1_in_ = transform(img1_in.resize((int(img_wds[i]), int(img_hts[i])),Image.LANCZOS))
+            img2_in_ = transform(img2_in.resize((int(img_wds[i]), int(img_hts[i])),Image.LANCZOS))
+            img1_out_ = transform(img1_out.resize((int(img_wds[i]), int(img_hts[i])),Image.LANCZOS))
+            img2_out_ = transform(img2_out.resize((int(img_wds[i]), int(img_hts[i])),Image.LANCZOS))
             imout = torch.cat((img1_in_,img1_out_), dim = 0)
             imout = imout.unsqueeze(dim=0)
             img_list[i].append(imout)
