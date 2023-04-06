@@ -2,8 +2,9 @@
 
 <img src="https://github.com/hy-kdpark/TET-GAN/blob/master/imgs/korean_example.png" width="80%" height="80%">
 
-## Docker 환경
-- pytorch/pytorch:1.8.0-cuda11.1-cudnn8-devel
+## 환경
+- Docker : pytorch/pytorch:1.8.0-cuda11.1-cudnn8-devel
+- gradio
 
 
 <img src="https://github.com/hy-kdpark/TET-GAN/blob/master/imgs/teaser.png" width="80%" height="80%">
